@@ -140,6 +140,26 @@ header {
     max-width: 140px;
 }
 
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 24px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+}
+
+.main-footer {
+    display: none;
+    padding: 24px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    width: 100%;
+}
+
 .logo-text h1 {
     font-size: 1.2rem;
     font-weight: 700;
@@ -1088,6 +1108,18 @@ header {
         display: block;
         height: 500px;
         position: relative;
+    }
+    
+    #map {
+        height: 500px !important; /* Force explicit height on mobile */
+    }
+    
+    .sidebar-footer {
+        display: none; /* Hide inside sidebar on mobile */
+    }
+    
+    .main-footer {
+        display: block; /* Show at the bottom of the page on mobile */
     }
     
     .detail-grid {
