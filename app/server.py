@@ -31,6 +31,15 @@ geolocator = Nominatim(user_agent="león_social_resources_app")
 # Ensure directories exist
 os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
 
+# Auto-inicializar base de datos si no existe o está vacía
+if not os.path.exists(DB_PATH) or os.path.getsize(DB_PATH) == 0:
+    print("Base de datos no encontrada o vacía. Iniciando ingesta automática desde Excel...")
+    try:
+        from scripts.ingest_data import ingest_all
+        ingest_all()
+    except Exception as e:
+        print(f"Error al inicializar la base de datos automáticamente: {e}")
+
 
 def get_db_connection():
     conn = sqlite3.connect(DB_PATH)

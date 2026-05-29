@@ -11,10 +11,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy source folders
+# Copy source folders, scripts, and initial Excel templates
 COPY app/ /app/app/
 COPY scripts/ /app/scripts/
 COPY data/ /app/data/
+COPY *.xlsx /app/
 
 # Create volume mount point for database persistence
 RUN mkdir -p /app/data

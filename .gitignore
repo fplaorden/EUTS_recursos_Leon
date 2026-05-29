@@ -11,6 +11,8 @@ __pycache__/
 
 # Application local logs and cache
 data/sent_emails.log
+data/app.db
+data/geocoding_cache.json
 data/app.db-journal
 data/app.db-shm
 data/app.db-wal

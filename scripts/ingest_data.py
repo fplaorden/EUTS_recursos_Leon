@@ -9,7 +9,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from geocode_utils import GeocodingCache, get_coordinates
 
-workspace_dir = r"g:\Mi unidad\Antigravity_fpl\EUTS_Recursos_Leon"
+workspace_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 db_path = os.path.join(workspace_dir, "data", "app.db")
 cache_path = os.path.join(workspace_dir, "data", "geocoding_cache.json")
 
