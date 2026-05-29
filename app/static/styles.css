@@ -1081,7 +1081,13 @@ header {
     }
     
     .main-content {
-        height: 600px;
+        height: auto;
+    }
+    
+    .view-panel.active {
+        display: block;
+        height: 500px;
+        position: relative;
     }
     
     .detail-grid {
