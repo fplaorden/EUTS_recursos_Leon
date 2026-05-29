@@ -102,25 +102,6 @@ function initPublicPage() {
 
     markersLayer = L.layerGroup().addTo(map);
 
-    // Add Legend Control
-    const legend = L.control({ position: 'bottomleft' });
-    legend.onAdd = function (map) {
-        const div = L.DomUtil.create('div', 'map-legend');
-        div.innerHTML = `
-            <h4>Leyenda de Recursos</h4>
-            <div class="legend-item">
-                <span class="legend-color legend-entity"></span>
-                <span>Entidades Sociales</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-color legend-ceas"></span>
-                <span>CEAS y Centros de Salud</span>
-            </div>
-        `;
-        return div;
-    };
-    legend.addTo(map);
-
     // 2. Fetch Data
     fetch('/api/recursos')
         .then(res => res.json())
