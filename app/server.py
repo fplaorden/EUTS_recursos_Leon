@@ -318,9 +318,22 @@ def create_entidad():
     cp = data.get('cp')
     localidad = data.get('localidad', 'LEÓN')
     
-    # Geocode address
-    cache = GeocodingCache(CACHE_PATH)
-    lat, lon = get_coordinates(geolocator, direccion, cp, localidad, cache)
+    # Read custom coordinates if provided, otherwise geocode
+    lat = data.get('latitude')
+    lon = data.get('longitude')
+    
+    use_manual_coords = False
+    if lat is not None and lon is not None and str(lat).strip() != '' and str(lon).strip() != '':
+        try:
+            lat = float(lat)
+            lon = float(lon)
+            use_manual_coords = True
+        except ValueError:
+            pass
+            
+    if not use_manual_coords:
+        cache = GeocodingCache(CACHE_PATH)
+        lat, lon = get_coordinates(geolocator, direccion, cp, localidad, cache)
     
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -371,11 +384,25 @@ def update_entidad(ent_id):
     cp = data.get('cp', entity['cp'])
     localidad = data.get('localidad', entity['localidad'])
     
-    # Re-geocode if address/zip/locality changed
-    lat, lon = entity['latitude'], entity['longitude']
-    if (direccion != entity['direccion'] or cp != entity['cp'] or localidad != entity['localidad']):
-        cache = GeocodingCache(CACHE_PATH)
-        lat, lon = get_coordinates(geolocator, direccion, cp, localidad, cache)
+    # Re-geocode or use manual coords
+    lat = data.get('latitude')
+    lon = data.get('longitude')
+    
+    use_manual_coords = False
+    if lat is not None and lon is not None and str(lat).strip() != '' and str(lon).strip() != '':
+        try:
+            lat = float(lat)
+            lon = float(lon)
+            use_manual_coords = True
+        except ValueError:
+            pass
+            
+    if not use_manual_coords:
+        # Re-geocode if address/zip/locality changed
+        lat, lon = entity['latitude'], entity['longitude']
+        if (direccion != entity['direccion'] or cp != entity['cp'] or localidad != entity['localidad']):
+            cache = GeocodingCache(CACHE_PATH)
+            lat, lon = get_coordinates(geolocator, direccion, cp, localidad, cache)
         
     conn.execute("""
     UPDATE entidades SET

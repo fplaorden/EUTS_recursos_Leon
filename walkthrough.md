@@ -110,3 +110,22 @@ Como la base de datos `data/app.db` ya está precalculada con las coordenadas en
 
 5. **Acceder a la Aplicación**:
    Entra en tu navegador a `https://<IP_DE_TU_VPS>` (puedes aceptar la advertencia del certificado autofirmado) y la plataforma estará en producción y completamente funcional.
+
+---
+
+## Resolución de Problemas y Geolocalización
+
+### Corrección de Ubicaciones en el Mapa
+El sistema convierte de manera automática las direcciones de las entidades a coordenadas geográficas (Latitud/Longitud) utilizando el servicio de mapas de OpenStreetMap (Nominatim). Si una entidad no se muestra en el sitio correcto o queda amontonada con otras en las coordenadas por defecto del centro de León, puedes solucionarlo de dos formas:
+
+1. **Ajuste Manual de Coordenadas (Recomendado)**:
+   - Accede como Administrador y edita la entidad.
+   - Verás dos nuevos campos opcionales: **Latitud** y **Longitud**.
+   - Introduce allí las coordenadas deseadas (por ejemplo: `42.6031`, `-5.5714`).
+   - Al guardar, el sistema usará exactamente esas coordenadas y omitirá la consulta automática.
+
+2. **Limpieza de Dirección**:
+   - Si prefieres que el sistema lo calcule solo, simplifica la dirección en el formulario.
+   - Evita poner pisos, puertas o aclaraciones complejas como *(Edificio Sindical, Piso 3)*.
+   - Utiliza formatos estándar como: `Calle Gran Vía de San Marcos, 5`. Al guardar, el geocodificador obtendrá las coordenadas correctas automáticamente.
+

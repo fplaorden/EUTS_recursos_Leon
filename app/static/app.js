@@ -894,6 +894,8 @@ function openEntityModal(id = null, event = null) {
         document.getElementById('ent-direccion').value = ent.direccion || '';
         document.getElementById('ent-cp').value = ent.cp || '';
         document.getElementById('ent-localidad').value = ent.localidad || 'LEÓN';
+        document.getElementById('ent-latitud').value = ent.latitude || '';
+        document.getElementById('ent-longitud').value = ent.longitude || '';
         document.getElementById('ent-telefono').value = ent.telefono || '';
         document.getElementById('ent-telefono2').value = ent.telefono2 || '';
         document.getElementById('ent-email').value = ent.email || '';
@@ -931,7 +933,9 @@ function saveEntity(event) {
         web: document.getElementById('ent-web').value,
         ceas: document.getElementById('ent-ceas').value,
         area: document.getElementById('ent-area').value,
-        colectivo: document.getElementById('ent-colectivo').value
+        colectivo: document.getElementById('ent-colectivo').value,
+        latitude: document.getElementById('ent-latitud').value ? parseFloat(document.getElementById('ent-latitud').value) : null,
+        longitude: document.getElementById('ent-longitud').value ? parseFloat(document.getElementById('ent-longitud').value) : null
     };
 
     const method = id ? 'PUT' : 'POST';
