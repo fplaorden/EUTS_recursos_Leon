@@ -351,40 +351,43 @@ def ingest_all():
     conn.commit()
 
     # 5. Ingest Servicios Basicos (CEAS / Centros de Salud)
-    print("\nProcessing Serv_Basicos.xlsx...")
     basicos_file = os.path.join(workspace_dir, "Serv_Basicos.xlsx")
-    basicos_df = pd.read_excel(basicos_file)
-    
-    basicos_inserted = 0
-    for idx, row in basicos_df.iterrows():
-        ceas_id = int(row['IdCEAS'])
-        tipo = clean_str(row['Tipo'])
-        nombre = clean_str(row['Nomb_CEAS'])
-        if not nombre:
-            continue
+    if os.path.exists(basicos_file):
+        print("\nProcessing Serv_Basicos.xlsx...")
+        basicos_df = pd.read_excel(basicos_file)
+        
+        basicos_inserted = 0
+        for idx, row in basicos_df.iterrows():
+            ceas_id = int(row['IdCEAS'])
+            tipo = clean_str(row['Tipo'])
+            nombre = clean_str(row['Nomb_CEAS'])
+            if not nombre:
+                continue
+                
+            direccion = clean_str(row['Direccion'])
+            cp = clean_cp(row['CP'])
+            ciudad = clean_str(row['Ciudad'])
             
-        direccion = clean_str(row['Direccion'])
-        cp = clean_cp(row['CP'])
-        ciudad = clean_str(row['Ciudad'])
-        
-        # Merge phone numbers
-        tel1 = clean_str(row['Tfno'])
-        tel2 = clean_str(row['Tfno2'])
-        tel3 = clean_str(row['Tfno3'])
-        tel4 = clean_str(row['Tfno4'])
-        email = clean_str(row['eMail'])
-        
-        # Geocode basic service
-        lat, lon = get_coordinates(geolocator, direccion, cp, ciudad, cache)
-        
-        cursor.execute("""
-        INSERT OR REPLACE INTO servicios_basicos
-        (id, tipo, nombre, direccion, cp, ciudad, telefono, email, telefono2, telefono3, telefono4, latitude, longitude)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (ceas_id, tipo, nombre, direccion, cp, ciudad, tel1, email, tel2, tel3, tel4, lat, lon))
-        basicos_inserted += 1
-        
-    print(f"Ingested {basicos_inserted} basic services (CEAS).")
+            # Merge phone numbers
+            tel1 = clean_str(row['Tfno'])
+            tel2 = clean_str(row['Tfno2'])
+            tel3 = clean_str(row['Tfno3'])
+            tel4 = clean_str(row['Tfno4'])
+            email = clean_str(row['eMail'])
+            
+            # Geocode basic service
+            lat, lon = get_coordinates(geolocator, direccion, cp, ciudad, cache)
+            
+            cursor.execute("""
+            INSERT OR REPLACE INTO servicios_basicos
+            (id, tipo, nombre, direccion, cp, ciudad, telefono, email, telefono2, telefono3, telefono4, latitude, longitude)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (ceas_id, tipo, nombre, direccion, cp, ciudad, tel1, email, tel2, tel3, tel4, lat, lon))
+            basicos_inserted += 1
+            
+        print(f"Ingested {basicos_inserted} basic services (CEAS).")
+    else:
+        print("\nSkipping Serv_Basicos.xlsx (file not found).")
     
     # Save cache
     cache.save()
