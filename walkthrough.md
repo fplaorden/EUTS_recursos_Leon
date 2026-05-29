@@ -1,19 +1,31 @@
 # Guía del Proyecto: Recursos de Asistencia Social de León
 
-Una aplicación web completamente contenedorizada para visualizar, buscar, filtrar y gestionar los recursos de asistencia social en León, España, basada en un backend dinámico en Python Flask y una Single Page Application (SPA) moderna en HTML5/CSS3/JS.
+Una aplicación web completamente contenedorizada para visualizar, buscar, filtrar y gestionar los recursos de asistencia social en León, España, basada en un backend dinámico en Python Flask y una Single Page Application (SPA) moderna en HTML5/CSS3/JS. 
+
+Esta aplicación ha sido creada por la **Escuela Universitaria de Trabajo Social (EUTS)** de la **Universidad de León (ULE)**, y su diseño visual refleja fielmente la identidad corporativa y los colores institucionales de la entidad.
+
+---
 
 ## Características Clave
 
-1. **Mapa Interactivo con Leaflet.js**: Muestra todas las entidades y servicios básicos municipales (CEAS / Centros de Salud) con marcadores personalizados de colores (Azul para entidades, Verde para CEAS). Al hacer clic en un pin, el mapa se centra y se muestra un resumen con un enlace a los detalles.
-2. **Filtros Avanzados y Reactivos**: Filtra al instante por **Área**, **Colectivo**, **Tipo de Servicio** y **Titularidad** (Pública o Privada) directamente en la interfaz sin recargar la página.
-3. **Búsqueda Inteligente Autocompletable**: Sugiere nombres de entidades, servicios o ubicaciones a medida que escribes. Al seleccionar una sugerencia, el mapa se desplaza al recurso y abre sus detalles.
-4. **Detalles Completos con Listas de Documentación**: Al hacer clic en un recurso se muestran sus datos de contacto, horarios, costes, condiciones de admisión y una sección dedicada con bordes discontinuos que detalla la **documentación requerida** (cargada dinámicamente desde la base de datos).
-5. **Panel de Control y Gestión Administrativa**:
+1. **Imagen Corporativa de la EUTS (Universidad de León)**:
+   - **Escudo Oficial de la ULE**: Incorporado arriba a la izquierda de la cabecera en todas las páginas (`index.html`, `login.html`, `admin.html`).
+   - **Nombre Destacado de la Escuela**: Situado de forma prominente en la cabecera de la aplicación.
+   - **Colores Institucionales**: Uso de la paleta oficial de la ULE (verde corporativo `#00a850` y rojo burdeos/granate `#8e001c`) para botones, enlaces, marcadores y elementos de la interfaz. En el modo oscuro, los colores se adaptan para garantizar la legibilidad (`#00d66c` y `#ff4d6a`) manteniendo la coherencia de marca.
+   - **Cabecera Adaptativa (Responsive)**: La estructura de la cabecera se reorganiza de manera vertical en pantallas de menos de `600px` y oculta las etiquetas de texto de los botones en pantallas ultra-pequeñas (menos de `480px`), mostrando únicamente los iconos para prevenir desbordamientos o solapamiento de textos.
+2. **Mapa Interactivo Optimizado para Android y Móviles**:
+   - Muestra las entidades y los CEAS/Centros de Salud con marcadores personalizados (Azul para entidades, Verde para CEAS).
+   - **Corrección de Clics en Android**: Implementa la opción de configuración `tap: false` de Leaflet.js. Esto soluciona el problema de inactividad de clics o zooms en navegadores como Chrome para Android.
+   - **Redimensionamiento Automático**: La visualización del lienzo del mapa se recalcula de forma activa (`map.invalidateSize()`) tras el cambio de orientación o tamaño de la ventana (`resize`) y al alternar entre pestañas del panel.
+3. **Filtros Avanzados y Reactivos**: Filtra al instante por **Área de Actuación**, **Colectivo**, **Tipo de Servicio** y **Titularidad** (Pública o Privada) directamente en la interfaz sin recargar la página.
+4. **Búsqueda Inteligente Autocompletable**: Sugiere nombres de entidades, servicios o ubicaciones a medida que escribes. Al seleccionar una sugerencia, el mapa se desplaza al recurso y abre sus detalles.
+5. **Detalles Completos con Listas de Documentación**: Al hacer clic en un recurso se muestran sus datos de contacto, horarios, costes, condiciones de admisión y una sección dedicada con bordes discontinuos que detalla la **documentación requerida** (cargada dinámicamente desde la base de datos).
+6. **Panel de Control y Gestión Administrativa**:
    - Acceso seguro mediante inicio de sesión (`/static/login.html`) con encriptación PBKDF2.
    - Panel CRUD completo (`/static/admin.html`) para crear, modificar o eliminar entidades, servicios y documentación.
    - Gestión de cuentas de administradores para registrar o eliminar perfiles.
    - Sistema de recuperación de contraseña mediante un token enviado por correo (o registrado en `data/sent_emails.log` si no hay SMTP configurado).
-6. **Despliegue de Producción con Docker**: Preparado para funcionar en un entorno de doble contenedor (Flask + Proxy inverso de Nginx + certificados SSL) con volúmenes de Docker para persistencia en un VPS Ubuntu.
+7. **Despliegue de Producción con Docker**: Preparado para funcionar en un entorno de doble contenedor (Flask + Proxy inverso de Nginx + certificados SSL) con volúmenes de Docker para persistencia en un VPS Ubuntu.
 
 ---
 
