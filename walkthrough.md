@@ -2,19 +2,20 @@
 
 Una aplicación web completamente contenedorizada para visualizar, buscar, filtrar y gestionar los recursos de asistencia social en León, España, basada en un backend dinámico en Python Flask y una Single Page Application (SPA) moderna en HTML5/CSS3/JS. 
 
-Esta aplicación ha sido creada por la **Escuela Universitaria de Trabajo Social (EUTS)** de la **Universidad de León (ULE)**, y su diseño visual refleja fielmente la identidad corporativa y los colores institucionales de la entidad.
+Esta aplicación ha sido creada por la **Escuela Universitaria de Trabajo Social (EUTS)** de la **Universidad de León (ULE)**, y su diseño visual refleja la identidad corporativa y los colores institucionales de la entidad.
 
 ---
 
 ## Características Clave
 
-1. **Imagen Corporativa de la EUTS (Universidad de León)**:
-   - **Escudo Oficial de la ULE**: Incorporado arriba a la izquierda de la cabecera en todas las páginas (`index.html`, `login.html`, `admin.html`).
-   - **Nombre Destacado de la Escuela**: Situado de forma prominente en la cabecera de la aplicación.
-   - **Colores Institucionales**: Uso de la paleta oficial de la ULE (verde corporativo `#00a850` y rojo burdeos/granate `#8e001c`) para botones, enlaces, marcadores y elementos de la interfaz. En el modo oscuro, los colores se adaptan para garantizar la legibilidad (`#00d66c` y `#ff4d6a`) manteniendo la coherencia de marca.
-   - **Cabecera Adaptativa (Responsive)**: La estructura de la cabecera se reorganiza de manera vertical en pantallas de menos de `600px` y oculta las etiquetas de texto de los botones en pantallas ultra-pequeñas (menos de `480px`), mostrando únicamente los iconos para prevenir desbordamientos o solapamiento de textos.
-2. **Mapa Interactivo Optimizado para Android y Móviles**:
-   - Muestra las entidades y los CEAS/Centros de Salud con marcadores personalizados (Azul para entidades, Verde para CEAS).
+1. **Imagen Corporativa EUTS y Universidad de León**:
+   - **Escudos Oficiales**: Incorporados arriba a la izquierda de la cabecera en todas las páginas (`index.html`, `login.html`, `admin.html`). Cuenta con el escudo oficial de la **Universidad de León** (`escudo-ule.svg`) y el escudo/logo con texto integrado de la **EUTS** (`escudo.svg`).
+   - **Nombre de la Escuela Prominente**: El título de la cabecera resalta el nombre del centro en grande de forma accesible.
+   - **Colores Institucionales**: Uso de la paleta oficial de la ULE (verde corporativo `#00a850` y rojo burdeos/granate `#8e001c`) en los elementos interactivos, botones y áreas clave de la interfaz. En el modo oscuro, los colores se adaptan para garantizar la legibilidad (`#00d66c` y `#ff4d6a`) manteniendo la coherencia de marca.
+   - **Cabecera Adaptativa (Responsive)**: La estructura de la cabecera se reorganiza verticalmente en pantallas móviles (menos de `600px`), ocultando el logo del texto de la EUTS para evitar desorden, y reduce el tamaño de los textos de los botones (menos de `480px`), mostrando únicamente los iconos para conservar el espacio en pantalla.
+2. **Mapa Interactivo con Leyenda de Colores**:
+   - **Marcadores Diferenciados**: Las chinchetas del mapa se diferencian claramente por colores: **Azul (`#0284c7`)** para Entidades Sociales y **Verde ULE (`#00a850`)** para CEAS y Centros de Salud.
+   - **Leyenda del Mapa**: Se ha añadido un control de leyenda interactivo en la esquina inferior izquierda del mapa con efecto traslúcido (glassmorphism) que indica el significado de cada color. La leyenda se contrae de forma responsiva en móviles.
    - **Corrección de Clics en Android**: Implementa la opción de configuración `tap: false` de Leaflet.js. Esto soluciona el problema de inactividad de clics o zooms en navegadores como Chrome para Android.
    - **Redimensionamiento Automático**: La visualización del lienzo del mapa se recalcula de forma activa (`map.invalidateSize()`) tras el cambio de orientación o tamaño de la ventana (`resize`) y al alternar entre pestañas del panel.
 3. **Filtros Avanzados y Reactivos**: Filtra al instante por **Área de Actuación**, **Colectivo**, **Tipo de Servicio** y **Titularidad** (Pública o Privada) directamente en la interfaz sin recargar la página.
