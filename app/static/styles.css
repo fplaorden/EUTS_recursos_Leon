@@ -10,11 +10,12 @@
     --text-secondary: #64748b;
     --text-muted: #94a3b8;
     
-    --primary: #2563eb;
-    --primary-hover: #1d4ed8;
-    --primary-light: #eff6ff;
-    --accent: #f59e0b;
-    --accent-hover: #d97706;
+    /* Institutional colors: Universidad de León (ULE Green and Burgundy Red) */
+    --primary: #00a850;
+    --primary-hover: #008d43;
+    --primary-light: rgba(0, 168, 80, 0.08);
+    --accent: #8e001c;
+    --accent-hover: #700014;
     
     --success: #10b981;
     --danger: #ef4444;
@@ -44,11 +45,11 @@
     --text-secondary: #94a3b8;
     --text-muted: #64748b;
     
-    --primary: #3b82f6;
-    --primary-hover: #60a5fa;
-    --primary-light: rgba(59, 130, 246, 0.1);
-    --accent: #fbbf24;
-    --accent-hover: #fcd34d;
+    --primary: #00d66c;
+    --primary-hover: #00b95d;
+    --primary-light: rgba(0, 214, 108, 0.12);
+    --accent: #ff4d6a;
+    --accent-hover: #ff7087;
     
     --border-color: #334155;
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
@@ -96,7 +97,7 @@ body {
 
 /* Layout Elements */
 header {
-    height: 70px;
+    height: 80px;
     background: var(--glass-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -113,31 +114,35 @@ header {
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
 }
 
-.logo-icon {
-    width: 38px;
-    height: 38px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 800;
-    font-size: 1.2rem;
+.logo-img {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+    background: white;
+    padding: 3px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast);
+}
+.logo-img:hover {
+    transform: scale(1.05);
 }
 
 .logo-text h1 {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: -0.5px;
+    line-height: 1.2;
 }
 
 .logo-text p {
     font-size: 0.75rem;
     color: var(--text-secondary);
+    line-height: 1.2;
 }
 
 .header-actions {
@@ -1020,5 +1025,65 @@ header {
     
     .detail-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Cabecera Adaptativa en Pantallas Medianas y Pequeñas */
+@media(max-width: 768px) {
+    header {
+        height: auto;
+        min-height: 80px;
+        padding: 12px 20px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    
+    .logo-container {
+        flex: 1 1 auto;
+    }
+    
+    .header-actions {
+        flex: 0 0 auto;
+    }
+}
+
+@media(max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 16px;
+    }
+    
+    .logo-container {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .logo-text h1 {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+    
+    .logo-text p {
+        text-align: center;
+    }
+    
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+        margin-top: 4px;
+    }
+}
+
+@media(max-width: 480px) {
+    .header-actions .btn span {
+        display: none;
+    }
+    
+    .header-actions .btn {
+        padding: 10px 14px;
     }
 }

@@ -87,7 +87,8 @@ function initPublicPage() {
     // 1. Initialize Map
     // Center of León, Spain
     map = L.map('map', {
-        zoomControl: false
+        zoomControl: false,
+        tap: false
     }).setView([42.598726, -5.568412], 13);
     
     L.control.zoom({ position: 'bottomright' }).addTo(map);
@@ -124,6 +125,13 @@ function initPublicPage() {
 
     // 3. Setup Listeners
     setupPublicListeners();
+
+    // 4. Force map invalidation on window resize
+    window.addEventListener('resize', () => {
+        if (map) {
+            map.invalidateSize();
+        }
+    });
 }
 
 function setupPublicListeners() {
@@ -269,6 +277,12 @@ function updateDashboardViews() {
 
     // 4. Render Basic Services List
     renderCEASView();
+
+    // 5. Invalidate size if map view is active to prevent rendering bugs
+    const mapPanel = document.getElementById('map-view-panel');
+    if (mapPanel && mapPanel.classList.contains('active') && map) {
+        setTimeout(() => map.invalidateSize(), 50);
+    }
 }
 
 function renderMapMarkers() {

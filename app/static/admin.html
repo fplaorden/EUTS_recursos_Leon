@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administración - Asistencia Social León</title>
+    <title>Panel de Administración - Escuela Universitaria de Trabajo Social (ULE)</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -80,22 +80,22 @@
 <body class="admin-layout">
     <header>
         <div class="logo-container">
-            <div class="logo-icon">L</div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Escudo_de_la_Universidad_de_Le%C3%B3n.svg/512px-Escudo_de_la_Universidad_de_Le%C3%B3n.svg.png" alt="Escudo Universidad de León" class="logo-img">
             <div class="logo-text">
-                <h1>Panel de Administración</h1>
-                <p>Gestión de Recursos de Asistencia Social • León</p>
+                <h1>Escuela Universitaria de Trabajo Social</h1>
+                <p>Universidad de León • Panel de Administración</p>
             </div>
         </div>
         <div class="header-actions">
             <a href="index.html" class="btn btn-secondary">
-                <i data-lucide="map"></i> Ver Mapa Público
+                <i data-lucide="map"></i> <span>Ver Mapa Público</span>
             </a>
             <span id="user-display" style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary)"></span>
             <button class="btn btn-secondary" onclick="openChangePasswordModal()" title="Cambiar Contraseña">
                 <i data-lucide="key"></i>
             </button>
             <button class="btn btn-danger" onclick="handleLogout()" title="Cerrar Sesión">
-                <i data-lucide="log-out"></i> Salir
+                <i data-lucide="log-out"></i> <span>Salir</span>
             </button>
             <button class="btn-icon" id="theme-toggle" title="Cambiar Tema">
                 <i data-lucide="moon" id="theme-icon"></i>
